@@ -27,7 +27,7 @@ function describe_assert_error_message
     # Reset test status
     set -e __current_spec_status
 
-    assert 'Expected 1 to equals 2' = "$__current_spec_output"
+    assert 'Expected 2 to equals 1' = "$__current_spec_output"
   end
 
   function it_supports_inversion_on_unary_operators
