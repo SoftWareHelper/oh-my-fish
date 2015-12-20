@@ -1,9 +1,8 @@
-function omf.remove_package
-
+function omf.packages.remove
   set -l pkg $argv
   set -l remove_status 1
 
-  if not omf.util_valid_package $pkg
+  if not omf.packages.valid_name $pkg
     if test $pkg = "omf" -o $pkg = "default"
       echo (omf::err)"You can't remove `$pkg`"(omf::off) 1^&2
     else

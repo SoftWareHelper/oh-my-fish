@@ -19,7 +19,7 @@ function omf.bundle.install
       set name (basename $name_or_url | sed 's/\.git//;s/^pkg-//;s/^plugin-//;s/^theme-//')
 
       if not contains $name $packages
-        omf.install $name_or_url;
+        omf.packages.install $name_or_url;
           and set installed
       end
     end

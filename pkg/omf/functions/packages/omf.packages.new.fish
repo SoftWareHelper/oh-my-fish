@@ -1,4 +1,15 @@
-function omf.new -a option name
+function __omf.packages.new.mkdir -a name
+  set -l name "$argv[1]"
+  if test -d "$OMF_CONFIG"
+    set name "$OMF_CONFIG/$name"
+  else if test -d "$OMF_PATH"
+    set name "$OMF_PATH/$name"
+  end
+  mkdir -p "$name"
+  echo $name
+end
+
+function omf.packages.new -a option name
   switch $option
     case "p" "pkg" "pack" "packg" "package"
       set option "pkg"
@@ -14,7 +25,7 @@ function omf.new -a option name
     return $OMF_INVALID_ARG
   end
 
-  if set -l dir (omf.util_mkdir "$option/$name")
+  if set -l dir (__omf.packages.new.mkdir "$option/$name")
     cd $dir
 
     set -l github (git config github.user)
@@ -23,14 +34,13 @@ function omf.new -a option name
     set -l user (git config user.name)
     test -z "$user"; and set user "{{USER}}"
 
-    omf.new_from_template "$OMF_PATH/pkg/omf/templates/$option" \
+    omf.packages.new_from_template "$OMF_PATH/pkg/omf/templates/$option" \
       $github $user $name
 
     echo (omf::em)"Switched to $dir"(omf::off)
 
     if test "$option" = themes
-      omf.theme $name
-      refresh
+      omf.theme.set $name
     end
   else
     echo (omf::err)"\$OMF_CONFIG and/or \$OMF_PATH undefined."(omf::off) 1^&2

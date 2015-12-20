@@ -64,11 +64,11 @@ end
 
 function omf.packages.list -a option type
   switch "$option"
-  case "--available"
+  case "-a" "--available"
     __omf.packages.list.available $type
-  case "--database"
+  case "-d" "--database"
     __omf.packages.list.database $type
-  case "--installed"
+  case "-i" "--installed"
     __omf.packages.list.installed $type
   case "*"
     __omf.packages.list $type
