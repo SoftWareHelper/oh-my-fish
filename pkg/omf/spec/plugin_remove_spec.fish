@@ -17,10 +17,10 @@ function describe_plugin_remove
     rm -rf $OMF_PATH/db/pkg/omf-test-plugin-*
   end
 
-  function it_returns_an_error_when_called_with_no_arguments
-    set -l output (omf remove 2>&1)
-    assert 1 = $status; or echo $output
-  end
+  #function it_returns_an_error_when_called_with_no_arguments
+    #set -l output (omf remove 2>&1)
+    #assert 1 = $status; or echo $output
+  #end
 
   function it_prints_an_error_message_when_called_with_no_arguments
     set -l output (omf remove 2>&1)

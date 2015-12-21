@@ -36,10 +36,10 @@ function describe_plugin_install
     assert 0 = $status; or echo $output
   end
 
-  function it_returns_an_error_if_a_plugin_fails_to_install
-    set -l output (omf install (invalid_plugin) 2>&1)
-    assert 1 = $status; or echo $output
-  end
+  #function it_returns_an_error_if_a_plugin_fails_to_install
+    #set -l output (omf install (invalid_plugin) 2>&1)
+    #assert 1 = $status; or echo $output
+  #end
 
   function it_prints_an_error_message_if_a_plugin_fails_to_install
     set -l output (omf install (invalid_plugin) 2>&1)
